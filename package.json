@@ -4,7 +4,8 @@
   "description": "Url shortner api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "author": "nitesh",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.15",
     "shortid": "^2.2.15"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
