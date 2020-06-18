@@ -1,4 +1,4 @@
 {
   "mongoURI": "mongodb+srv://nitya:rocks@cluster0-3trij.mongodb.net/URL?w=majority&retryWrites=true",
-  "baseUrl": "https://git.heroku.com/urlbitly.git"
+  "baseUrl": "https://urlbitly.herokuapp.com"
 }
