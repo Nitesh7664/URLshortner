@@ -8,30 +8,28 @@ const router = express.Router();
 const Url = require("../models/Url");
 
 router.post("/shorten", async (req, res) => {
+  console.log(req.body);
   const { longUrl } = req.body;
+  console.log(longUrl);
 
-  if (validUrl.isUri(longUrl)) {
-    try {
-      var data = await Url.findOne({ longUrl: longUrl });
-      if (data) return res.status(200).send(data);
+  try {
+    var data = await Url.findOne({ longUrl: longUrl });
+    if (data) return res.status(200).send(data);
 
-      const urlCode = shortid.generate();
-      const baseUrl = config.get("baseUrl");
+    const urlCode = shortid.generate();
+    const baseUrl = config.get("baseUrl");
 
-      const shortUrl = baseUrl + "/" + urlCode;
+    const shortUrl = baseUrl + "/" + urlCode;
 
-      data = await Url.create({
-        urlCode,
-        longUrl,
-        shortUrl,
-      });
-      res.status(200).json(data);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json("server error");
-    }
-  } else {
-    res.status(401).json("invalid URL");
+    data = await Url.create({
+      urlCode,
+      longUrl,
+      shortUrl,
+    });
+    res.status(200).json(data);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json("server error");
   }
 });
 
