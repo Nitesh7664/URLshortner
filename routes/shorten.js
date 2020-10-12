@@ -20,7 +20,6 @@ router.post("/shorten", async (req, res) => {
     const baseUrl = config.get("baseUrl");
 
     let shortUrl = baseUrl + "/" + urlCode;
-    shortUrl = shortUrl.length < longUrl ? shortUrl : longUrl;
     data = await Url.create({
       urlCode,
       longUrl,
