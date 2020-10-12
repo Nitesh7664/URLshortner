@@ -19,8 +19,8 @@ router.post("/shorten", async (req, res) => {
     const urlCode = shortid.generate();
     const baseUrl = config.get("baseUrl");
 
-    const shortUrl = baseUrl + "/" + urlCode;
-
+    let shortUrl = baseUrl + "/" + urlCode;
+    shortUrl = shortUrl.length < longUrl ? shortUrl : longUrl;
     data = await Url.create({
       urlCode,
       longUrl,
@@ -28,7 +28,6 @@ router.post("/shorten", async (req, res) => {
     });
     res.status(200).json(data);
   } catch (err) {
-    console.error(err.message);
     res.status(500).json("server error");
   }
 });
